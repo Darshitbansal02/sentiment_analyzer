@@ -1,107 +1,75 @@
-# Social Media Sentiment Analyzer (Hugging Face + Plotly Dash)
+# Social Media Sentiment Analyzer (FastAPI + Next.js)
 
-A Python project that **streams social posts for a campaign hashtag**, runs **transformer-based sentiment analysis**, and **visualizes rolling statistics** in an interactive **Plotly Dash** dashboard.
+A full-stack project that **streams social posts for a campaign hashtag**, runs **transformer-based sentiment analysis**, and provides an interactive **Next.js dashboard** for real-time visualization.
 
-- **AI/NLP**: Hugging Face `transformers` pipeline (default: `cardiffnlp/twitter-roberta-base-sentiment-latest`)
-- **Dashboard**: Plotly Dash (rolling mean sentiment, counts, and live feed)
-- **Streaming**: 
-  - Default: **Simulated stream** (no API keys needed)
-  - Optional: Twitter (X) **Filtered Stream** via Tweepy if `TWITTER_BEARER_TOKEN` is provided
-- **Dev Environment**: Works great in **VS Code**
+## 🔑 Features
+- **AI/NLP**: Hugging Face `transformers` pipeline (default: `cardiffnlp/twitter-roberta-base-sentiment-latest`)  
+- **Backend**: FastAPI for REST APIs + real-time streaming  
+- **Frontend**: Next.js + Tailwind + shadcn/ui (modern dashboard with charts & tables)  
+- **Streaming**:  
+  - Default: **Simulated stream** (no API keys needed)  
+  - Optional: Twitter/X **Filtered Stream** if `TWITTER_BEARER_TOKEN` is set in `.env`  
 
 ---
 
-## Quick Start
+## 🚀 Getting Started
 
+### 1. Clone the repo
 ```bash
-# 1) Create and activate virtualenv (Windows PowerShell shown)
+git clone https://github.com/<your-username>/sentiment_analyzer.git
+cd sentiment_analyzer
+```
+
+### 2. Setup backend (FastAPI)
+```bash
+# Create and activate virtualenv (Windows PowerShell shown)
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 
-# 2) Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 3) First run with the simulated stream
+# Copy env file
 copy .env.example .env   # Windows
 # or: cp .env.example .env   # macOS/Linux
 
-# (Optionally) edit .env to change HASHTAG, refresh rate, etc.
-# 4) Launch the app
-python app.py
+# Run FastAPI backend
+uvicorn api_main:app --reload --port 8000
 ```
 
-Open the dashboard at: http://127.0.0.1:8050/
+Backend should now be running at: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## Enable Twitter/X Streaming (Optional)
-
-1. Create a developer app on X (Twitter) and obtain a **Bearer Token** for API v2 filtered stream.
-2. In your `.env` file, set:
-
-```
-TWITTER_BEARER_TOKEN=YOUR_TOKEN_HERE
-HASHTAG=#YourHashtag
-```
-
-3. Re-run:
-
+### 3. Setup frontend (Next.js)
 ```bash
-python app.py
+cd frontend
+
+# Install dependencies
+npm install   # or pnpm install
+
+# Start Next.js dev server
+npm run dev
 ```
 
-If credentials are valid, the app will switch from the simulated stream to the **live filtered stream** automatically.
-
-> Note: Access to Twitter/X streaming may require elevated/paid access depending on your account and the platform's current policies. The simulated mode always works.
+Frontend should now be available at: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Project Structure
-
-```
-sentiment_analyzer/
-├─ app.py                 # Entrypoint: starts streamer + dashboard
-├─ requirements.txt
-├─ .env.example           # Copy to .env and fill values
-├─ README.md
-├─ src/
-│  ├─ models.py           # HF Transformers sentiment pipeline wrapper
-│  ├─ data_store.py       # Thread-safe rolling store of posts + sentiments
-│  ├─ config.py           # Reads env vars, default settings
-│  └─ streamers/
-│     ├─ simulate_stream.py  # Simulated posts (works offline)
-│     └─ twitter_stream.py   # Tweepy filtered stream client (optional)
-├─ scripts/
-│  └─ sample_posts.jsonl  # Seed data for simulation
-└─ .vscode/
-   ├─ launch.json
-   └─ settings.json
-```
+## 📊 Dashboard Features
+- **Dashboard Overview** → Sentiment stats (positive, neutral, negative)  
+- **Line & Bar Charts** → Sentiment trends over time  
+- **Data Table** → Live posts with their sentiment  
+- **Dark/Light Mode Toggle**  
 
 ---
 
-## What’s in the Dashboard?
-
-- **Rolling mean sentiment** (window configurable in minutes)
-- **Live counts** (Positive / Neutral / Negative) for the recent window
-- **Recent posts table** with color-coded sentiment
-- Auto-refresh (configurable) without page reload
+## 🛠 Tech Stack
+- **Backend**: FastAPI, Python, Hugging Face Transformers  
+- **Frontend**: Next.js, React, Tailwind CSS, shadcn/ui, Recharts  
+- **Streaming**: Simulated / Twitter API  
 
 ---
 
-## Customization Ideas
-
-- Swap model in `src/models.py` (e.g., multilingual or domain-specific).
-- Add extra sources (Reddit, YouTube comments, Mastodon) as new `streamers/*.py` modules following the same interface.
-- Persist to SQLite or a message queue (Kafka, Redis) for scaling.
-- Deploy with Docker and a production server (e.g., `waitress` or gunicorn).
-
----
-
-## Troubleshooting
-
-- **Torch install issues on Windows**: If you have trouble, visit https://pytorch.org/ and follow the recommended install command for your system.
-- **Slow first run**: The model downloads on first use; subsequent runs are faster.
-- **No data showing**: In simulated mode, ensure `.env` exists and `HASHTAG` is set (default is `#MyCampaign`). In Twitter mode, validate your bearer token and hashtag format (include `#`).
-
-Enjoy building! 🚀
+## 🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.  
