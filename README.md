@@ -1,6 +1,8 @@
-# Social Media Sentiment Analyzer (FastAPI + Next.js)
+# 📌 Social Media Sentiment Analyzer (FastAPI + Next.js)
 
 A full-stack project that **streams social posts for a campaign hashtag**, runs **transformer-based sentiment analysis**, and provides an interactive **Next.js dashboard** for real-time visualization.
+
+---
 
 ## 🔑 Features
 - **AI/NLP**: Hugging Face `transformers` pipeline (default: `cardiffnlp/twitter-roberta-base-sentiment-latest`)  
@@ -14,13 +16,13 @@ A full-stack project that **streams social posts for a campaign hashtag**, runs 
 
 ## 🚀 Getting Started
 
-### 1. Clone the repo
+### 1️⃣ Clone the repo
 ```bash
 git clone https://github.com/<your-username>/sentiment_analyzer.git
 cd sentiment_analyzer
 ```
 
-### 2. Setup backend (FastAPI)
+### 2️⃣ Setup backend (FastAPI)
 ```bash
 # Create and activate virtualenv (Windows PowerShell shown)
 python -m venv .venv
@@ -37,11 +39,11 @@ copy .env.example .env   # Windows
 uvicorn api_main:app --reload --port 8000
 ```
 
-Backend should now be running at: [http://localhost:8000](http://localhost:8000)
+Backend should now be running at 👉 [http://localhost:8000](http://localhost:8000)
 
 ---
 
-### 3. Setup frontend (Next.js)
+### 3️⃣ Setup frontend (Next.js)
 ```bash
 cd frontend
 
@@ -52,15 +54,27 @@ npm install   # or pnpm install
 npm run dev
 ```
 
-Frontend should now be available at: [http://localhost:3000](http://localhost:3000)
+Frontend should now be available at 👉 [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 📊 Dashboard Features
-- **Dashboard Overview** → Sentiment stats (positive, neutral, negative)  
-- **Line & Bar Charts** → Sentiment trends over time  
-- **Data Table** → Live posts with their sentiment  
-- **Dark/Light Mode Toggle**  
+✅ **Dashboard Overview** → Sentiment stats (positive, neutral, negative)  
+📈 **Line & Bar Charts** → Sentiment trends over time  
+📋 **Data Table** → Live posts with their sentiment  
+🌙 **Dark/Light Mode Toggle**  
+
+---
+
+## 📸 Screenshots  
+
+### Dashboard Overview  
+![Dashboard](frontend/public/screenshots/dashboard.png)  
+
+### Sentiment Trends  
+![Charts](frontend/public/screenshots/recentposts.png)  
+
+*(Save your screenshots in `frontend/public/screenshots/` for them to appear here on GitHub.)*
 
 ---
 
