@@ -2,7 +2,8 @@
 # Core ML + NLP
 # --------------------
 transformers==4.43.4
-torch>=2.5.0
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.3.1+cpu
 
 # --------------------
 # FastAPI + Server
@@ -13,7 +14,7 @@ uvicorn[standard]==0.30.1
 # --------------------
 # Data & Utils
 # --------------------
-pandas==2.2.2
+pandas==2.2.1
 tzlocal==5.2
 
 # --------------------

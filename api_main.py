@@ -228,14 +228,14 @@ def set_selected_hashtag(payload: dict = Body(...)):
 # -------------------------
 # Serve Frontend (Optional)
 # -------------------------
-FRONT_DIR = Path("frontend/out")
-app.mount("/_next", StaticFiles(directory=FRONT_DIR / "_next"), name="_next")
-if (FRONT_DIR / "static").exists():
-    app.mount("/static", StaticFiles(directory=FRONT_DIR / "static"), name="static")
+# FRONT_DIR = Path("frontend/out")
+# app.mount("/_next", StaticFiles(directory=FRONT_DIR / "_next"), name="_next")
+# if (FRONT_DIR / "static").exists():
+#     app.mount("/static", StaticFiles(directory=FRONT_DIR / "static"), name="static")
 
-@app.get("/", response_class=HTMLResponse)
-async def serve_index():
-    index_file = FRONT_DIR / "index.html"
-    if index_file.exists():
-        return index_file.read_text(encoding="utf-8")
-    return "<h1>Frontend not built yet</h1>"
+# @app.get("/", response_class=HTMLResponse)
+# async def serve_index():
+#     index_file = FRONT_DIR / "index.html"
+#     if index_file.exists():
+#         return index_file.read_text(encoding="utf-8")
+#     return "<h1>Frontend not built yet</h1>"
