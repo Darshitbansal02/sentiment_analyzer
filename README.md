@@ -71,10 +71,9 @@ Frontend should now be available at 👉 [http://localhost:3000](http://localhos
 ### Dashboard Overview  
 ![Dashboard](frontend/public/screenshots/dashboard.png)  
 
-### Sentiment Trends  
+### Recent Posts  
 ![Charts](frontend/public/screenshots/recentposts.png)  
 
-*(Save your screenshots in `frontend/public/screenshots/` for them to appear here on GitHub.)*
 
 ---
 
